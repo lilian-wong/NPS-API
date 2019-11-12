@@ -3,13 +3,16 @@
 const apiKey = '';
 const searchURL = 'https://developer.nps.gov/api/v1/parks/';
 const requestFields = ['addresses'];
+const selectedStates = [];
 
+//combine query parameters
 function formatQueryParams(params){
     const queryItems = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
       return queryItems.join('&');
 }
 
+//Get physcial address and combine address line1, line2, line3, state code and postal code in one line
 function formatAddress(addr){
     let PhysicalAddr = addr[getPhysicalAddr(addr)];
     return `<h4>Address:</h4>
@@ -21,6 +24,7 @@ function formatAddress(addr){
         <p>`      
 }
 
+//Find the address index for physical address
 function getPhysicalAddr(addr){
     let index = 0;
     addr.forEach(function(a){
@@ -32,6 +36,7 @@ function getPhysicalAddr(addr){
     return index;
 }
 
+//Create HTML for Search Results
 function displayResults(responseJson){
     $('#results-list').empty();
     for (let i=0; i<responseJson.limit; i++){
@@ -49,7 +54,7 @@ function displayResults(responseJson){
 function getNationalParkService(query, maxResults=10){
     const params = {
         api_key:apiKey,
-        q:query,
+        stateCode: query,
         fields:requestFields,
         limit:maxResults,
     };

@@ -12,9 +12,9 @@
         <div class="container">
             <h1>National Parks finder</h1>
             <form id="js-form">
-                <label for="search-term">Search by State</label>
-                <select name="search-term" id="js-search-term" required>
-                    <option value="">Select a state</option>
+                <label for="search-term">Select state(s)</label>
+                <select name="search-term" id="js-search-term" multiple="multiple" required>
+                    <option value="">Select state(s)</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -66,10 +66,10 @@
                     <option value="WV">West Virginia</option>
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
-                </select>				
-                <label for="max-results">Maximum results to return</label>
+                </select>			
+                <label for="max-results">Maximum results to return: </label>
                 <input type="number" name="max-results" id="js-max-results" value="10">
-                <input type="submit" value="Go">
+                <input type="submit" value="Search">
             </form>
             <p id="js-error-message" class="error-message"></p>
             <section id="results" class="hidden">
